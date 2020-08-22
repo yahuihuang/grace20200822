@@ -17,6 +17,10 @@ const routes: Routes = [
         { path: 'color/:type', component: ColorComponent },
       ]
     },
+    {
+      path: 'pages',
+      loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+    },
     { path: '**', component: PathNotFoundComponent },
   ];
 
