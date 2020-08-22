@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { chartAreaDemo } from '../chartAreaDemo';
 import { chartPieDemo } from '../chartPieDemo';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -8,7 +9,7 @@ import { chartPieDemo } from '../chartPieDemo';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     // Set new default font family and font color to mimic Bootstrap's default styling
@@ -18,4 +19,28 @@ export class DashboardComponent implements OnInit {
     chartPieDemo();
   }
 
-}
+  goColor(type: number, name: string): void {
+    /*this.router.navigateByUrl('/utilities/color/' + type + "?name=" + name);
+    this.router.navigateByUrl(`/utilities/color/${type}?name=${name}`);
+
+    this.router.navigate(['/utilities/color/' + type], {
+      queryParams: {
+        name,
+        key: 123
+      }
+    });*/
+    /*
+    this.router.navigate(['/', 'utilities', 'color', type], {
+      queryParams: {
+        name,
+        key: 123
+      }
+    });*/
+    this.router.navigate(['/utilities/color', type], {
+      queryParams: {
+        name,
+        key: 123
+      }
+    });
+  }
+ }

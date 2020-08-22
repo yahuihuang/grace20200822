@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ColorComponent implements OnInit {
   type = 0;
+  name = '';
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -18,12 +19,22 @@ export class ColorComponent implements OnInit {
     // this.type = this.route.snapshot.params.type;
 
     // 參數變動時才會取得新值
+    this.type = +this.route.snapshot.paramMap.get('type');
     // this.route.paramMap.subscribe((params: ParamMap) => {
     this.route.paramMap.subscribe(params => {
       this.type = +params.get('type'); // 參數變動時取得新值
       console.log('type: ' + this.type);
       if (this.type === 0) {
         this.type = 1;
+      }
+    });
+
+    this.name = this.route.snapshot.queryParamMap.get('name');
+    this.route.queryParamMap.subscribe(params => {
+      this.name = params.get('name'); // 參數變動時取得新值
+      console.log('name: ' + this.name);
+      if (this.name === null) {
+        this.name = '';
       }
     });
   }
