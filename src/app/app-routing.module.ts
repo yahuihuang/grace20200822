@@ -13,7 +13,8 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'utilities',
       children: [
-        { path: 'color', component: ColorComponent }
+        { path: 'color', component: ColorComponent },
+        { path: 'color/:type', component: ColorComponent },
       ]
     },
     { path: '**', component: PathNotFoundComponent },
