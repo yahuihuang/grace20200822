@@ -5,6 +5,7 @@ import { Page2Component } from './page2/page2.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PathNotFoundComponent } from './path-not-found/path-not-found.component';
 import { ColorComponent } from './utilities/color/color.component';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -26,11 +27,16 @@ const routes: Routes = [
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
+  imports: [
+    QuicklinkModule,
+    RouterModule.forRoot(routes, {
       useHash: true,
       enableTracing: true,
-      preloadingStrategy: PreloadAllModules
+      //preloadingStrategy: PreloadAllModules,
+      preloadingStrategy: QuicklinkStrategy,
     })],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
