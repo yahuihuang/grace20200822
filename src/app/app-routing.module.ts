@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { Page1Component } from './page1/page1.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     {
       path: '',
       component: LayoutComponent,
+      canActivate: [ AuthGuard ],
       children: [
         { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
         { path: 'page1', component: Page1Component },
@@ -29,7 +31,7 @@ const routes: Routes = [
           loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
         },
         { path: 'blank2', loadChildren: () => import('./pages/blank2/blank2.module').then(m => m.Blank2Module) },
-        //{ path: '**', component: PathNotFoundComponent },
+        // { path: '**', component: PathNotFoundComponent },
       ]
     },
     { path: 'login', component: LoginComponent },
@@ -41,7 +43,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       enableTracing: true,
-      //preloadingStrategy: PreloadAllModules,
+      // preloadingStrategy: PreloadAllModules,
       preloadingStrategy: QuicklinkStrategy,
     })],
   exports: [
