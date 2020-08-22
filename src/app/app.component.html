@@ -14,10 +14,18 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+      <!-- Nav Item - / -->
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Home</span></a>
+      </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#/dashboard">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -88,8 +96,8 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">ng rounter Pages:</h6>
-            <a class="collapse-item" href="#/page1">Page1</a>
-            <a class="collapse-item" href="#/page2">Page2</a>
+            <a class="collapse-item" routerLink="/page1" routerLinkActive="active">Page1</a>
+            <a class="collapse-item" routerLink="/page2" routerLinkActive="active">Page2</a>
           </div>
         </div>
       </li>
