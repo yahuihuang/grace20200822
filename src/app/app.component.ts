@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { chartAreaDemo } from './chartAreaDemo';
-import { chartPieDemo } from './chartPieDemo';
+//import { chartAreaDemo } from './chartAreaDemo';
+//import { chartPieDemo } from './chartPieDemo';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // Set new default font family and font color to mimic Bootstrap's default styling
-    chartAreaDemo();
+    //chartAreaDemo();
 
     // Set new default font family and font color to mimic Bootstrap's default styling
-    chartPieDemo();
+    //chartPieDemo();
 
   }
 }
