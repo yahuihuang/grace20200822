@@ -21,6 +21,7 @@ const routes: Routes = [
       path: 'pages',
       loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
     },
+    { path: 'blank2', loadChildren: () => import('./pages/blank2/blank2.module').then(m => m.Blank2Module) },
     { path: '**', component: PathNotFoundComponent },
   ];
 

@@ -11,7 +11,10 @@ const routes: Routes = [
     path: 'subpages',
     loadChildren: () => import('./subpages/subpages.module').then(m => m.SubpagesModule)
   },
-
+  {
+    path: 'blank2',
+    loadChildren: () => import('./blank2/blank2.module').then(m => m.Blank2Module)
+  },
 ];
 
 @NgModule({
