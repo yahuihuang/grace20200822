@@ -53,11 +53,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
       //                       updateOn: 'blur',
       // }),
       password:       this.fb.control('', {
-                            validators: [ Validators.required, Validators.minLength(6), CompaarePasswords],
+                            validators: [ Validators.required, Validators.minLength(6), ComparePasswords],
                             updateOn: 'blur',
       }),
       repeatPassword: this.fb.control('', {
-                            validators: [ Validators.required, Validators.minLength(6), CompaarePasswords],
+                            validators: [ Validators.required, Validators.minLength(6), ComparePasswords],
                             updateOn: 'blur',
       }),
     });
@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   isInvalid(name: string): boolean {
-    console.log('name: ' + name);
+    //console.log('name: ' + name);
     return (this.fc(name).touched || this.fc(name).dirty)
            && this.fc(name).invalid;
   }
@@ -135,7 +135,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 }
 
-function CompaarePasswords(control: FormControl): ValidationErrors {
+function ComparePasswords(control: FormControl): ValidationErrors {
   const fg = control.parent as FormGroup;
   if (fg) {
     const p1 = fg.get('password');
@@ -146,6 +146,7 @@ function CompaarePasswords(control: FormControl): ValidationErrors {
       return null;
     }
 
+    console.log('p1.value: ' + p1.value + ', p2.value: ' + p2.value);
     if (p1.value === p2.value) {
       return null;
     } else {
