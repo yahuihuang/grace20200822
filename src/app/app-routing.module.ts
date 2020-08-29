@@ -9,6 +9,7 @@ import { ColorComponent } from './utilities/color/color.component';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {
@@ -35,6 +36,7 @@ const routes: Routes = [
       ]
     },
     { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
   ];
 
 @NgModule({
