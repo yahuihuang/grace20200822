@@ -9,9 +9,9 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   data: any = {
-    email: 'grace@test.com',
-    password: '123123',
-    rememberMe: true
+    email: '',
+    password: '',
+    rememberMe: false
   };
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient ) {
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       case 'PENDING':
         alert('表單驗證中，請稍後再送出!');
         break;
-      case 'DISABLED':  //所有欄位都dsabled時
+      case 'DISABLED':  // 所有欄位都dsabled時
         break;
     }
     /*
