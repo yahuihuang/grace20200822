@@ -17,9 +17,9 @@
                 </div>
 <pre>
   data (disable欄位"不"會被移除) = {{ data | json }}
-  form.value (disable欄位會被移除) = {{ form.value | json }}
-  form.submitted (表單是否被送出過) = {{ form.submitted }}
-  form.errors (ngForm沒有errors可以顯示，雖有此property) = {{ form.errors | json }}
+  form1.value (disable欄位會被移除) = {{ form1.value | json }}
+  form1.submitted (表單是否被送出過) = {{ form1.submitted }}
+  form1.errors (ngForm沒有errors可以顯示，雖有此property) = {{ form1.errors | json }}
   mEmail.value = {{ mEmail.value  }}
   mEmail.status = {{ mEmail.status }}
   mEmail.pristine (未改過) = {{ mEmail.pristine }}
@@ -32,7 +32,7 @@
   mEmail.invalid (無效欄位) = {{ mEmail.invalid }}
   mEmail.errors (錯誤訊息) = {{ mEmail.errors | json }}
 </pre>
-                <form class="user" #form="ngForm" (ngSubmit)="doSubmit(form)">
+                <form class="user" #form1="ngForm" (ngSubmit)="doSubmit(form1)">
                   <div class="form-group">
                     <input type="email" class="form-control form-control-user"
                         id="exampleInputEmail" aria-describedby="emailHelp"
@@ -41,7 +41,7 @@
                         #mEmail="ngModel"
                         required
                         email>
-                      <ul *ngIf="form.submitted && mEmail.invalid">
+                      <ul *ngIf="form1.submitted && mEmail.invalid">
                         <li *ngIf="mEmail.errors.required">請輸入電子郵件信箱</li>
                         <li *ngIf="mEmail.errors.email">請輸入合法的 E-mail格式</li>
                       </ul>
