@@ -69,6 +69,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return errorData;
   }
 
+  isInvalid(name: string): boolean {
+    return (this.fc(name).touched || this.fc(name).dirty)
+           && this.fc(name).invalid;
+  }
+
   fc(name: string): FormControl {
     return this.form.get(name) as FormControl;
   }
