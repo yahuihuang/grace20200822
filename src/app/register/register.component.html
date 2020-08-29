@@ -90,6 +90,10 @@
                          placeholder="Password"
                          [class.is-invalid]="isInvalid('password')"
                          formControlName="password">
+                  <ul *ngIf="fc('repeatPassword').invalid || fc('password').invalid">
+                    <li *ngIf="fc('repeatPassword').errors?.required || fc('password').errors?.required">請輸入password</li>
+                    <li *ngIf="fc('repeatPassword').errors.comparePassword || fc('password').errors.comparePassword">password not the same.</li>
+                  </ul>
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user"

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective, FormArray, ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Component({
   templateUrl: './register.component.html',
@@ -53,11 +53,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
       //                       updateOn: 'blur',
       // }),
       password:       this.fb.control('', {
-                            validators: [ Validators.required, Validators.minLength(6)],
+                            validators: [ Validators.required, Validators.minLength(6), CompaarePasswords],
                             updateOn: 'blur',
       }),
       repeatPassword: this.fb.control('', {
-                            validators: [ Validators.required, Validators.minLength(6)],
+                            validators: [ Validators.required, Validators.minLength(6), CompaarePasswords],
                             updateOn: 'blur',
       }),
     });
@@ -132,5 +132,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   doReset(): void {
     this.form.reset(this.data);
+  }
+}
+
+function CompaarePasswords(control: FormControl): ValidationErrors {
+  const fg = control.parent as FormGroup;
+  if (fg) {
+    const p1 = fg.get('password');
+    const p2 = fg.get('repeatPassword');
+
+    if (control === p1) {
+      p2.updateValueAndValidity();
+      return null;
+    }
+
+    if (p1.value === p2.value) {
+      return null;
+    } else {
+      return {
+        comparePassword: true
+      };
+    }
+  } else {
+    return null;
   }
 }
