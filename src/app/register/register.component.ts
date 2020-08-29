@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.addNewEmail();
     }
 
-    this.form.reset(this.data);
+    this.form.setValue(this.data);
   }
 
   ngOnDestroy(): void {
