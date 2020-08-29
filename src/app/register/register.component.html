@@ -9,32 +9,69 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form class="user">
+<pre>data = {{ data | json }}
+              form.value = {{ form.value | json }}
+              form.status = {{ form.status }}
+              form.pristine = {{ form.pristine }}
+              form.dirty = {{ form.dirty }}
+              form.touched = {{ form.touched }}
+              form.untouched = {{ form.untouched }}
+              form.enabled = {{ form.enabled }}
+              form.disabled = {{ form.disabled }}
+              form.valid = {{ form.valid }}
+              form.invalid = {{ form.invalid }}
+              form.errors = {{ form.errors | json }}
+</pre>
+            <form class="user" [formGroup]="form" (ngSubmit)="doSubmit()">
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                         placeholder="First Name">
+                  <input type="text" class="form-control form-control-user"
+                         placeholder="First Name"
+                         formControlName="firstName">
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control form-control-user" id="exampleLastName"
-                         placeholder="Last Name">
+                  <input type="text" class="form-control form-control-user"
+                         placeholder="Last Name"
+                         formControlName="lastName">
                 </div>
               </div>
+<pre>
+  fc('firstName').value = {{ fc('firstName').value }}
+  fc('firstName').status = {{ fc('firstName').status }}
+  fc('firstName').pristine = {{ fc('firstName').pristine }}
+  fc('firstName').dirty = {{ fc('firstName').dirty }}
+  fc('firstName').touched = {{ fc('firstName').touched }}
+  fc('firstName').untouched = {{ fc('firstName').untouched }}
+  fc('firstName').enabled = {{ fc('firstName').enabled }}
+  fc('firstName').disabled = {{ fc('firstName').disabled }}
+  fc('firstName').valid = {{ fc('firstName').valid }}
+  fc('firstName').invalid = {{ fc('firstName').invalid }}
+  fc('firstName').errors = {{ fc('firstName').errors | json }}
+</pre>
               <div class="form-group">
-                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                       placeholder="Email Address">
+                <input type="email" class="form-control form-control-user"
+                        placeholder="Email Address"
+                        [class.is-invalid]="fc('email').dirty && fc('email').invalid"
+                        formControlName="email">
+                <ul [class.invalid-feedback]="fc('email').touched && fc('email').invalid"
+                        *ngIf="fc('email').touched && fc('email').invalid">
+                     <li *ngIf="fc('email').errors.required">請輸入電子郵件信箱</li>
+                     <li *ngIf="fc('email').errors.email">請輸入合法的 E-mail 格式</li>
+                </ul>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                         placeholder="Password">
+                  <input type="password" class="form-control form-control-user"
+                         placeholder="Password"
+                         formControlName="password">
                 </div>
                 <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword"
-                         placeholder="Repeat Password">
+                  <input type="password" class="form-control form-control-user"
+                         placeholder="Repeat Password"
+                         formControlName="repeatPassword">
                 </div>
               </div>
-              <a href="login.html" class="btn btn-primary btn-user btn-block"> Register Account </a>
+              <button type="submit" class="btn btn-primary btn-user btn-block"> Register Account </button>
               <hr>
               <a href="index.html" class="btn btn-google btn-user btn-block">
                 <i class="fab fa-google fa-fw"></i> Register with Google </a>
