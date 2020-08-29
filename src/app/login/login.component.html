@@ -42,27 +42,34 @@
                         #mEmail="ngModel"
                         required
                         email>
-                      <ul [class.invalid-feedback]="mEmail.touched && mEmail.invalid">
+                      <ul *ngIf="mEmail.touched && mEmail.invalid"
+                          [class.invalid-feedback]="mEmail.touched && mEmail.invalid">
                         <li *ngIf="mEmail.errors.required">請輸入電子郵件信箱</li>
                         <li *ngIf="mEmail.errors.email">請輸入合法的 E-mail格式</li>
                       </ul>
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-user"
-                      id="exampleInputPassword" placeholder="Password"
-                      [(ngModel)]="data.password" name="password"
-                      #mPassword="ngModel">
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox small">
-                      <input type="checkbox" class="custom-control-input"
-                        id="customCheck"
-                        [(ngModel)]="data.rememberMe" name="rememberMe"
-                        #mRememberMe="ngModel">
-                      <label class="custom-control-label" for="customCheck">Remember Me</label>
+
+                  <ng-container ngModelGroup="pw" #mPW="ngModelGroup">
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user"
+                        id="exampleInputPassword" placeholder="Password"
+                        [(ngModel)]="data.password" name="password"
+                        required
+                        #mPassword="ngModel">
                     </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary btn-user btn-block">
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input"
+                          id="customCheck"
+                          [(ngModel)]="data.rememberMe" name="rememberMe"
+                          #mRememberMe="ngModel">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <button type="submit" class="btn btn-primary btn-user btn-block"
+                    [disabled]="mPW.invalid">
                     Login
                   </button>
                   <hr>
