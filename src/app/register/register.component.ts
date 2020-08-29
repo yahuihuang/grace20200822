@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective } from '@angular/forms';
 
 @Component({
   templateUrl: './register.component.html',
@@ -34,7 +34,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     document.body.className = '';
   }
 
-  doSubmit(): void {
+  doSubmit(f: FormGroupDirective): void {
+    console.log('f.submitted: ' + f.submitted);
+
     switch (this.form.status) {
       case 'VALID':
         alert('表單送出成功');
