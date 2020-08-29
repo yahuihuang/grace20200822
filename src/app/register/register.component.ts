@@ -31,23 +31,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       firstName:      this.fb.control('Grace', {
                             validators: [ Validators.required],
-                            updateOn: 'blur' // 減少非同步異動至server的效能
+                            updateOn: 'blur', // 減少非同步異動至server的效能
+
       } ),
       lastName:       this.fb.control('Huang', {
                             validators: [ Validators.required ],
-                            updateOn: 'blur'
+                            updateOn: 'blur',
       }),
       email:          this.fb.control('grace@test.com', {
                             validators: [ Validators.required, Validators.email],
-                            updateOn: 'blur'
+                            updateOn: 'blur',
       }),
       password:       this.fb.control('', {
                             validators: [ Validators.required, Validators.minLength(6)],
-                            updateOn: 'blur'
+                            updateOn: 'blur',
       }),
       repeatPassword: this.fb.control('', {
                             validators: [ Validators.required, Validators.minLength(6)],
-                            updateOn: 'blur'
+                            updateOn: 'blur',
       }),
     });
   }
