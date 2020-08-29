@@ -10,7 +10,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     firstName: 'Grace',
     lastName: 'Huang',
     // email: 'grace@test.com',
-    emails: [],
+    emails: ['grace@test.com', 'grace@test.com'],
     password: '',
     repeatPassword: '',
   };
@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     //     password: ['', [ Validators.required, Validators.minLength(6) ]],
     //     repeatPassword: ['', [ Validators.required, Validators.minLength(6) ]],
     // });
+
     this.form = this.fb.group({
       firstName:      this.fb.control('Grace', {
                             validators: [ Validators.required],
@@ -40,12 +41,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
                             updateOn: 'blur',
       }),
       emails: this.fb.array([
-          this.fb.control('grace@test.com', {
-            validators: [ Validators.required, Validators.email],
-            updateOn: 'blur' }),
-          this.fb.control('grace@test.com', {
-              validators: [ Validators.required, Validators.email],
-              updateOn: 'blur'}),
+          // this.fb.control('grace@test.com', {
+          //   validators: [ Validators.required, Validators.email],
+          //   updateOn: 'blur' }),
+          // this.fb.control('grace@test.com', {
+          //     validators: [ Validators.required, Validators.email],
+          //     updateOn: 'blur'}),
       ]),
       // email:          this.fb.control('grace@test.com', {
       //                       validators: [ Validators.required, Validators.email],
@@ -60,6 +61,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
                             updateOn: 'blur',
       }),
     });
+
+    for (const _ of this.data.emails) {
+      this.addNewEmail();
+    }
+
+    this.form.reset(this.data);
   }
 
   ngOnDestroy(): void {
@@ -75,7 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         console.log(this.form.value);
         break;
       case 'INVALID':
-        //alert('驗證表單失敗，請確認!\n' + this.getFormValidationErrors());
+        // alert('驗證表單失敗，請確認!\n' + this.getFormValidationErrors());
         break;
       case 'PENDING':
         alert('表單驗證中，請稍後再送出!');
@@ -121,5 +128,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
           validators: [ Validators.required, Validators.email],
           updateOn: 'blur',
     }));
+  }
+
+  doReset(): void {
+    this.form.reset(this.data);
   }
 }
