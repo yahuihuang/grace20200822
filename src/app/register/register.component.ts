@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   templateUrl: './register.component.html',
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         console.log(this.form.value);
         break;
       case 'INVALID':
-        alert('驗證表單失敗，請確認!');
+        alert('驗證表單失敗，請確認!\n' + this.getFormValidationErrors());
         break;
       case 'PENDING':
         alert('表單驗證中，請稍後再送出!');
@@ -49,6 +49,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
       case 'DISABLED':  // 所有欄位都dsabled時
         break;
     }
+  }
+
+  getFormValidationErrors(): string {
+    let errorData = '';
+    let errorRow = 0;
+    Object.keys(this.form.controls).forEach(key => {
+      const controlErrors: ValidationErrors = this.form.get(key).errors;
+      if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            errorRow++;
+            errorData += errorRow + '. Key control: ' + key + ', keyError: ' + keyError + ', err value: ' + controlErrors[keyError] + '\n';
+          });
+        }
+      });
+
+    return errorData;
   }
 
   fc(name: string): FormControl {

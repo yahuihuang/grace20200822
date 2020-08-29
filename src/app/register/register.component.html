@@ -27,26 +27,28 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user"
                          placeholder="First Name"
-                         formControlName="firstName">
+                         [class.is-invalid]="fc('email').dirty && fc('email').invalid"
+                         formControlName="email">
                 </div>
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user"
                          placeholder="Last Name"
+                         [class.is-invalid]="fc('lastName').dirty && fc('lastName').invalid"
                          formControlName="lastName">
                 </div>
               </div>
 <pre>
-  fc('firstName').value = {{ fc('firstName').value }}
-  fc('firstName').status = {{ fc('firstName').status }}
-  fc('firstName').pristine = {{ fc('firstName').pristine }}
-  fc('firstName').dirty = {{ fc('firstName').dirty }}
-  fc('firstName').touched = {{ fc('firstName').touched }}
-  fc('firstName').untouched = {{ fc('firstName').untouched }}
-  fc('firstName').enabled = {{ fc('firstName').enabled }}
-  fc('firstName').disabled = {{ fc('firstName').disabled }}
-  fc('firstName').valid = {{ fc('firstName').valid }}
-  fc('firstName').invalid = {{ fc('firstName').invalid }}
-  fc('firstName').errors = {{ fc('firstName').errors | json }}
+  fc('email').value = {{ fc('email').value }}
+  fc('email').status = {{ fc('email').status }}
+  fc('email').pristine = {{ fc('email').pristine }}
+  fc('email').dirty = {{ fc('email').dirty }}
+  fc('email').touched = {{ fc('email').touched }}
+  fc('email').untouched = {{ fc('email').untouched }}
+  fc('email').enabled = {{ fc('email').enabled }}
+  fc('email').disabled = {{ fc('email').disabled }}
+  fc('email').valid = {{ fc('email').valid }}
+  fc('email').invalid = {{ fc('email').invalid }}
+  fc('email').errors = {{ fc('email').errors | json }}
 </pre>
               <div class="form-group">
                 <input type="email" class="form-control form-control-user"
@@ -63,11 +65,13 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user"
                          placeholder="Password"
+                         [class.is-invalid]="fc('password').dirty && fc('password').invalid"
                          formControlName="password">
                 </div>
                 <div class="col-sm-6">
                   <input type="password" class="form-control form-control-user"
                          placeholder="Repeat Password"
+                         [class.is-invalid]="fc('repeatPassword').dirty && fc('repeatPassword').invalid"
                          formControlName="repeatPassword">
                 </div>
               </div>
