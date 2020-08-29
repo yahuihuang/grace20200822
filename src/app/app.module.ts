@@ -11,7 +11,7 @@ import { PathNotFoundComponent } from './path-not-found/path-not-found.component
 import { ColorComponent } from './utilities/color/color.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
