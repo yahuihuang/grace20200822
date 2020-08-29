@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective, FormArray } from '@angular/forms';
 
 @Component({
   templateUrl: './register.component.html',
@@ -9,7 +9,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   data: any = {
     firstName: 'Grace',
     lastName: 'Huang',
-    email: 'grace@test.com',
+    // email: 'grace@test.com',
+    emails: [],
     password: '',
     repeatPassword: '',
   };
@@ -38,10 +39,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
                             validators: [ Validators.required ],
                             updateOn: 'blur',
       }),
-      email:          this.fb.control('grace@test.com', {
-                            validators: [ Validators.required, Validators.email],
-                            updateOn: 'blur',
-      }),
+      emails: this.fb.array([
+          this.fb.control('grace@test.com', {
+            validators: [ Validators.required, Validators.email],
+            updateOn: 'blur' }),
+          this.fb.control('grace@test.com', {
+              validators: [ Validators.required, Validators.email],
+              updateOn: 'blur'}),
+      ]),
+      // email:          this.fb.control('grace@test.com', {
+      //                       validators: [ Validators.required, Validators.email],
+      //                       updateOn: 'blur',
+      // }),
       password:       this.fb.control('', {
                             validators: [ Validators.required, Validators.minLength(6)],
                             updateOn: 'blur',
@@ -66,7 +75,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         console.log(this.form.value);
         break;
       case 'INVALID':
-        alert('驗證表單失敗，請確認!\n' + this.getFormValidationErrors());
+        //alert('驗證表單失敗，請確認!\n' + this.getFormValidationErrors());
         break;
       case 'PENDING':
         alert('表單驗證中，請稍後再送出!');
@@ -93,11 +102,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   isInvalid(name: string): boolean {
+    console.log('name: ' + name);
     return (this.fc(name).touched || this.fc(name).dirty)
            && this.fc(name).invalid;
   }
 
   fc(name: string): FormControl {
     return this.form.get(name) as FormControl;
+  }
+
+  fa(name: string): FormArray {
+    return this.form.get(name) as FormArray;
+  }
+
+  addNewEmail(): void {
+    const emails = this.fa('emails');
+    emails.push(this.fb.control('', {
+          validators: [ Validators.required, Validators.email],
+          updateOn: 'blur',
+    }));
   }
 }

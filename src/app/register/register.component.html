@@ -28,8 +28,8 @@
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user"
                          placeholder="First Name"
-                         [class.is-invalid]="isInvalid('email')"
-                         formControlName="email">
+                         [class.is-invalid]="isInvalid('firstName')"
+                         formControlName="firstName">
                 </div>
                 <div class="col-sm-6">
                   <input type="text" class="form-control form-control-user"
@@ -38,6 +38,7 @@
                          formControlName="lastName">
                 </div>
               </div>
+<!--
 <pre>
   fc('email').value = {{ fc('email').value }}
   fc('email').status = {{ fc('email').status }}
@@ -51,6 +52,26 @@
   fc('email').invalid = {{ fc('email').invalid }}
   fc('email').errors = {{ fc('email').errors | json }}
 </pre>
+-->
+              <ng-container formArrayName="emails">
+                <div class="form-group"
+                     *ngFor="let ctl of fa('emails').controls; let i=index">
+                  <input type="email" class="form-control form-control-user"
+                    placeholder="Email Address"
+                  [class.is-invalid]="ctl.invalid"
+                  [formControlName]="i">
+
+                  <ul [class.invalid-feedback]="ctl.invalid"
+                        *ngIf="ctl.invalid">
+                    <li *ngIf="ctl.errors?.required">請輸入電子郵件信箱</li>
+                    <li *ngIf="ctl.errors?.email">請輸入合法的 E-mail 格式</li>
+                </ul>
+                </div>
+              </ng-container>
+              <button class="form-group row btn btn-info" type="button"
+                  (click)="addNewEmail()">Add Email</button>
+
+              <!--
               <div class="form-group">
                 <input type="email" class="form-control form-control-user"
                         placeholder="Email Address"
@@ -62,6 +83,7 @@
                      <li *ngIf="fc('email').errors?.email">請輸入合法的 E-mail 格式</li>
                 </ul>
               </div>
+              -->
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user"
