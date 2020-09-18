@@ -1,0 +1,14 @@
+{
+  "menu": {
+      "home": "Home",
+      "feature": {
+          "name": "Feature module",
+          "form": "Form"
+      },
+      "language": "Language",
+      "languageList": {
+          "taiwanese": "中",
+          "english": "En"
+      }
+  }
+}
