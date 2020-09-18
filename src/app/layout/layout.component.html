@@ -10,7 +10,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">{{ 'menu.home' | translate }} <sup>2</sup></div>
       </a>
 
       <!-- Divider -->
@@ -145,6 +145,17 @@
               </div>
             </div>
           </form>
+          <!-- test -->
+          <div style="padding-right: 40px;">
+            <button class="row btn btn-info" (click)="useLanguage('en')">
+              {{ 'menu.languageList.english' | translate }}
+            </button>
+          </div>
+          <div>
+            <button class="row btn btn-info" (click)="useLanguage('zh-tw')">
+              {{ 'menu.languageList.taiwanese' | translate }}
+            </button>
+          </div>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

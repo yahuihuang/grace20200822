@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective, FormArray, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, FormGroupDirective, FormArray, ValidatorFn } from '@angular/forms';
 
 @Component({
   templateUrl: './register.component.html',
@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   isInvalid(name: string): boolean {
-    //console.log('name: ' + name);
+    // console.log('name: ' + name);
     return (this.fc(name).touched || this.fc(name).dirty)
            && this.fc(name).invalid;
   }
