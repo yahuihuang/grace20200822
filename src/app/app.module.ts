@@ -15,6 +15,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // tslint:disable-next-line: typedef
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
